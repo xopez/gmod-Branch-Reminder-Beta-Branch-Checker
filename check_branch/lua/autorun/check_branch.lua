@@ -13,7 +13,7 @@ if SERVER then
         if not file.Exists(configPath, "DATA") then
             local json = util.TableToJSON(defaultConfig, false) -- minified
             file.Write(configPath, json)
-            print("[BranchCheck] Config file created (minified) with default values.")
+            print("[BranchCheck] Config file created with default values.")
             return defaultConfig
         end
 
