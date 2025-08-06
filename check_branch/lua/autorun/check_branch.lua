@@ -8,7 +8,7 @@ if SERVER then
 
     local branchReminderInterval = defaultConfig.interval
 
-    -- Funktion: JSON laden oder erstellen (minifiziert)
+    --  Load or create JSON
     local function loadOrCreateConfig()
         if not file.Exists(configPath, "DATA") then
             local json = util.TableToJSON(defaultConfig, false) -- minified
@@ -28,7 +28,7 @@ if SERVER then
         return configTable
     end
 
-    -- Config direkt beim Laden einlesen
+    -- Load configuration directly during loading
     local config = loadOrCreateConfig()
     branchReminderInterval = config.interval
     print("[BranchCheck] Reminder-Interval: " .. branchReminderInterval .. " seconds")
