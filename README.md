@@ -11,7 +11,7 @@ Lightweight and easy to configure via JSON.
 
 ⚙️ Configuration
 A config file is created at:
-`garrysmod/data/branch_reminder_config.json`
+```garrysmod/data/branch_reminder_config.json```
 
 Change the `interval` value (in seconds) to modify how often reminders are shown.
 
