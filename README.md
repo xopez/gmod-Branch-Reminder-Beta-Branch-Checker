@@ -5,13 +5,13 @@ Automatically checks the player's Steam beta branch when they join the server.
 Shows a warning in chat if the client's branch differs from the server's.
 Periodically reminds the player to switch branches (customizable interval).
 Two types of messages:
-Player is not on the beta, server is → Suggests joining the beta.
-Player is on the wrong beta → Suggests switching to correct one.
+- Player is not on the beta, server is → Suggests joining the beta.
+- Player is on the wrong beta → Suggests switching to correct one.
 Lightweight and easy to configure via JSON.
 
 ⚙️ Configuration
 A config file is created at:
-garrysmod/data/branch_reminder_config.json
+`garrysmod/data/branch_reminder_config.json`
 
 Change the `interval` value (in seconds) to modify how often reminders are shown.
 
