@@ -12,7 +12,11 @@ if SERVER then
         end
 
         -- Validate or create default config
-        if not configTable or type(configTable.interval) ~= "number" or configTable.interval <= 0 then
+        if
+            not configTable
+            or type(configTable.interval) ~= "number"
+            or configTable.interval <= 0
+        then
             configTable = table.Copy(defaultConfig)
             file.Write(configPath, util.TableToJSON(configTable, false))
             print("[BranchCheck] Config file created or reset to default values.")
@@ -28,11 +32,10 @@ if SERVER then
 
     hook.Add("PlayerInitialSpawn", "SendServerBranch", function(ply)
         net.Start("CheckClientBranch")
-            net.WriteString(BRANCH)
-            net.WriteUInt(branchReminderInterval, 16) -- supports up to ~18 hours
+        net.WriteString(BRANCH)
+        net.WriteUInt(branchReminderInterval, 16) -- supports up to ~18 hours
         net.Send(ply)
     end)
-
 else -- CLIENT
     local COLOR_WARN = Color(255, 100, 100)
     local COLOR_INFO = Color(100, 200, 255)
@@ -41,10 +44,18 @@ else -- CLIENT
 
     local function showBranchWarning(serverBranch)
         if serverBranch == "unknown" and BRANCH ~= "unknown" then
-            chat.AddText(COLOR_WARN, "[BranchCheck] Please leave the beta branch to avoid potential issues!")
+            chat.AddText(
+                COLOR_WARN,
+                "[BranchCheck] Please leave the beta branch to avoid potential issues!"
+            )
             return true
         elseif serverBranch ~= "unknown" and BRANCH ~= serverBranch then
-            chat.AddText(COLOR_INFO, "[BranchCheck] Please switch to the server's branch: ", COLOR_YELLOW, serverBranch)
+            chat.AddText(
+                COLOR_INFO,
+                "[BranchCheck] Please switch to the server's branch: ",
+                COLOR_YELLOW,
+                serverBranch
+            )
             return true
         end
         return false
@@ -54,7 +65,13 @@ else -- CLIENT
         local serverBranch = net.ReadString()
         local interval = net.ReadUInt(16)
 
-        print(string.format("[BranchCheck] Server branch: %s, Client branch: %s", serverBranch, BRANCH))
+        print(
+            string.format(
+                "[BranchCheck] Server branch: %s, Client branch: %s",
+                serverBranch,
+                BRANCH
+            )
+        )
         print(string.format("[BranchCheck] Reminder interval: %d seconds", interval))
 
         timer.Remove(TIMER_NAME) -- stop any existing reminder timer
