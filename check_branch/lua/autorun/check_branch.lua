@@ -52,7 +52,7 @@ else -- CLIENT
         elseif serverBranch ~= "unknown" and BRANCH ~= serverBranch then
             chat.AddText(
                 COLOR_INFO,
-                "[BranchCheck] Please switch to the server's branch: ",
+                "[BranchCheck] Please switch to the server's beta: ",
                 COLOR_YELLOW,
                 serverBranch
             )
